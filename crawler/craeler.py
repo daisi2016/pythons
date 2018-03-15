@@ -7,6 +7,7 @@ import os
 import pymongo
 #import re
 import time
+from datetime import datetime
 import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -106,7 +107,7 @@ def saveToDb(title,content,moudle,org,url):
     result_news =news.find({"url": url,"title": title,})
     result_list = list(result_news[:])
     if(len(result_list)==0):
-        news.insert_one({'title': title, 'content': content, 'moudle': moudle, 'org': org,'url':url})
+        news.insert_one({'title': title, 'content': content, 'moudle': moudle, 'org': org,'url':url,'createDate':datetime.now()})
 
 #定时循环执行
 def startTimer():
